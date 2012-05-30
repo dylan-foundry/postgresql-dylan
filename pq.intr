@@ -8,7 +8,9 @@ define interface
       "PQuntrace",
       "PQprint",
       "PQdisplayTuples",
-      "PQprintTuples"
+      "PQprintTuples",
+      "PQfn",
+      "PQArgBlock"
     };
 end interface;
 

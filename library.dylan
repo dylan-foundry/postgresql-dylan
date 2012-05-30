@@ -79,7 +79,6 @@ define module pq
     PQisnonblocking,
     PQisthreadsafe,
     PQflush,
-    PQfn,
     PQresultStatus,
     PQresStatus,
     PQresultErrorMessage,
