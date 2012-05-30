@@ -1,58 +1,58 @@
 module: dylan-user
 
-define library libpq
+define library pq
   use common-dylan;
   use c-ffi;
 
-  export libpq;
+  export pq;
 end library;
 
-define module libpq
+define module pq
   use common-dylan;
   use c-ffi;
 
-  export $libpq-no-compression, $libpq-snappy-compression;
+  export $pq-no-compression, $pq-snappy-compression;
 
-  export libpq-open, libpq-close, libpq-put, libpq-delete,
-    libpq-write, libpq-get;
+  export pq-open, pq-close, pq-put, pq-delete,
+    pq-write, pq-get;
 
-  export libpq-create-iterator, libpq-create-snapshot,
-    libpq-release-snapshot;
+  export pq-create-iterator, pq-create-snapshot,
+    pq-release-snapshot;
 
-  export libpq-property-value, libpq-approximate-sizes,
-    libpq-compact-range, libpq-destroy-db, libpq-repair-db,
-    libpq-iter-destroy, libpq-iter-valid, libpq-iter-seek-to-first,
-    libpq-iter-seek-to-last, libpq-iter-seek, libpq-iter-next,
-    libpq-iter-prev, libpq-iter-key, libpq-iter-value,
-    libpq-iter-get-error;
+  export pq-property-value, pq-approximate-sizes,
+    pq-compact-range, pq-destroy-db, pq-repair-db,
+    pq-iter-destroy, pq-iter-valid, pq-iter-seek-to-first,
+    pq-iter-seek-to-last, pq-iter-seek, pq-iter-next,
+    pq-iter-prev, pq-iter-key, pq-iter-value,
+    pq-iter-get-error;
 
-  export libpq-writebatch-create, libpq-writebatch-destroy,
-    libpq-writebatch-clear, libpq-writebatch-put,
-    libpq-writebatch-delete, libpq-writebatch-iterate;
+  export pq-writebatch-create, pq-writebatch-destroy,
+    pq-writebatch-clear, pq-writebatch-put,
+    pq-writebatch-delete, pq-writebatch-iterate;
 
-  export libpq-options-create, libpq-options-destroy,
-    libpq-options-set-comparator, libpq-options-set-filter-policy,
-    libpq-options-set-create-if-missing, libpq-options-set-error-if-exists,
-    libpq-options-set-paranoid-checks, libpq-options-set-env,
-    libpq-options-set-info-log, libpq-options-set-write-buffer-size,
-    libpq-options-set-max-open-files, libpq-options-set-cache,
-    libpq-options-set-block-size, libpq-options-set-block-restart-interval,
-    libpq-options-set-compression;
+  export pq-options-create, pq-options-destroy,
+    pq-options-set-comparator, pq-options-set-filter-policy,
+    pq-options-set-create-if-missing, pq-options-set-error-if-exists,
+    pq-options-set-paranoid-checks, pq-options-set-env,
+    pq-options-set-info-log, pq-options-set-write-buffer-size,
+    pq-options-set-max-open-files, pq-options-set-cache,
+    pq-options-set-block-size, pq-options-set-block-restart-interval,
+    pq-options-set-compression;
 
-  export libpq-comparator-create, libpq-comparator-destroy;
+  export pq-comparator-create, pq-comparator-destroy;
 
-  export libpq-filterpolicy-create, libpq-filterpolicy-destroy,
-    libpq-filterpolicy-create-bloom;
+  export pq-filterpolicy-create, pq-filterpolicy-destroy,
+    pq-filterpolicy-create-bloom;
 
-  export libpq-readoptions-create, libpq-readoptions-destroy,
-    libpq-readoptions-set-verify-checksums,
-    libpq-readoptions-set-fill-cache,
-    libpq-readoptions-set-snapshot;
+  export pq-readoptions-create, pq-readoptions-destroy,
+    pq-readoptions-set-verify-checksums,
+    pq-readoptions-set-fill-cache,
+    pq-readoptions-set-snapshot;
 
-  export libpq-writeoptions-create, libpq-writeoptions-destroy,
-    libpq-writeoptions-set-sync;
+  export pq-writeoptions-create, pq-writeoptions-destroy,
+    pq-writeoptions-set-sync;
 
-  export libpq-cache-create-lru, libpq-cache-destroy;
+  export pq-cache-create-lru, pq-cache-destroy;
 
-  export libpq-create-default-env, libpq-env-destroy;
+  export pq-create-default-env, pq-env-destroy;
 end module;

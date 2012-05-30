@@ -1,4 +1,4 @@
-module: libpq
+module: pq
 
 define interface
   #include "libpq-fe.h",

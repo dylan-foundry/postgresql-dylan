@@ -1,19 +1,19 @@
 module: dylan-user
 
-define library libpq-test-suite
+define library pq-test-suite
   use common-dylan;
   use io;
-  use libpq;
+  use pq;
   use testworks;
 
-  export libpq-test-suite;
+  export pq-test-suite;
 end library;
 
-define module libpq-test-suite
+define module pq-test-suite
   use common-dylan, exclude: { format-to-string };
   use format;
-  use libpq;
+  use pq;
   use testworks;
 
-  export libpq-test-suite;
+  export pq-test-suite;
 end module;

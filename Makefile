@@ -8,12 +8,12 @@ all: build
 
 .PHONY: build test
 
-libpq.dylan: libpq.intr $(MELANGE)
-	$(MELANGE) -Tc-ffi -I$(PG_INCLUDEDIR) libpq.intr libpq.dylan
+pq.dylan: pq.intr $(MELANGE)
+	$(MELANGE) -Tc-ffi -I$(PG_INCLUDEDIR) pq.intr pq.dylan
 
-build: libpq.dylan
-	dylan-compiler -build libpq
+build: pq.dylan
+	dylan-compiler -build pq
 
-test: libpq.dylan
-	dylan-compiler -build libpq-test-suite-app
-	_build/bin/libpq-test-suite-app
+test: pq.dylan
+	dylan-compiler -build pq-test-suite-app
+	_build/bin/pq-test-suite-app
