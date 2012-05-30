@@ -1,1 +1,6 @@
  * The functions for escaping need to be fixed.
+ * All functions that take an array of things and
+   a count of the items in that array need Dylan
+   wrappers to convert from Dylan collections
+   to the correct underlying C representation.
+ * Result parameters aren't mapped yet.
