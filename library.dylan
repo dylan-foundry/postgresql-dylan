@@ -5,4 +5,5 @@ define library postgresql
   use c-ffi;
 
   export postgresql;
+  export %postgresql;
 end library;
