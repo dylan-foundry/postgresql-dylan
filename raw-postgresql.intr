@@ -13,6 +13,7 @@ define interface
       "PQprintTuples",
       "PQfn",
       "PQArgBlock"
-    };
+    },
+    inline-functions: inline;
 end interface;
 
