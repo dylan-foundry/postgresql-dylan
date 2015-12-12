@@ -1,13 +1,13 @@
 module: dylan-user
 
-define library pq
+define library postgresql
   use common-dylan;
   use c-ffi;
 
-  export pq;
+  export postgresql;
 end library;
 
-define module pq
+define module postgresql
   use common-dylan;
   use c-ffi;
 

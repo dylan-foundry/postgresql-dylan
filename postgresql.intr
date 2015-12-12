@@ -1,4 +1,4 @@
-module: pq
+module: postgresql
 
 define interface
   #include "libpq-fe.h",
