@@ -1,3 +1,4 @@
 *.hdp
 _build
-postgresql.dylan
+raw-postgresql.dylan
+module-raw-postgresql.dylan

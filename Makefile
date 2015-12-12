@@ -13,13 +13,13 @@ else
   TARGET_PLATFORM=
 endif
 
-postgresql.dylan: postgresql.intr
-	$(MELANGE) -Tc-ffi -I$(PG_INCLUDEDIR) postgresql.intr postgresql.dylan
+raw-postgresql.dylan: raw-postgresql.intr
+	$(MELANGE) -Tc-ffi -I$(PG_INCLUDEDIR) -m module-raw-postgresql.dylan raw-postgresql.intr raw-postgresql.dylan
 
-build: postgresql.dylan
+build: raw-postgresql.dylan
 	$(TARGET_PLATFORM) dylan-compiler -build postgresql
 
-test: postgresql.dylan
+test: raw-postgresql.dylan
 	$(TARGET_PLATFORM) dylan-compiler -build postgresql-test-suite-app
 	_build/bin/postgresql-test-suite-app
 
