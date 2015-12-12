@@ -7,6 +7,6 @@ files:        library
               module-raw-postgresql
               module-postgresql
               raw-postgresql
-              postgresql
+              pg-connection
 c-libraries:  -L`pg_config --libdir`
               -lpq

@@ -15,5 +15,8 @@ define interface
       "PQArgBlock"
     },
     inline-functions: inline;
+
+  struct "struct pg_conn",
+    pointer-type-name: <pg-connection>;
 end interface;
 
