@@ -16,6 +16,12 @@ define method pg-encode-as-text
 end method pg-encode-as-text;
 
 define method pg-encode-as-text
+    (value :: <integer>)
+ => (bytes :: <byte-sequence>)
+  integer-to-string(value)
+end method pg-encode-as-text;
+
+define method pg-encode-as-text
     (value :: <boolean>)
  => (bytes :: <byte-sequence>)
   if (value)
