@@ -21,12 +21,6 @@ define inline function pg-connect-poll
   PQconnectPoll(connection)
 end function pg-connect-poll;
 
-define inline function pg-connection-status
-    (connection :: <pg-connection>)
- => (status :: <integer>)
-  PQstatus(connection)
-end function pg-connection-status;
-
 define inline function pg-finish
     (connection :: <pg-connection>)
  => ()
@@ -56,21 +50,3 @@ define inline function pg-ping
  => (status :: <integer>)
   PQping(connection-info)
 end function pg-ping;
-
-define inline function pg-protocol-version
-    (connection :: <pg-connection>)
- => (version :: <integer>)
-  PQprotocolVersion(connection)
-end function pg-protocol-version;
-
-define inline function pg-server-version
-    (connection :: <pg-connection>)
- => (version :: <integer>)
-  PQserverVersion(connection)
-end function pg-server-version;
-
-define inline function pg-socket
-    (connection :: <pg-connection>)
- => (file-descriptor :: <integer>)
-  PQsocket(connection)
-end function pg-socket;
