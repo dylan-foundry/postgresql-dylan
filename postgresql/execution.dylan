@@ -17,7 +17,7 @@ define inline function pg-execute
                             element-count: param-count);
     for (p in parameters, idx from 0)
       let encoded = pg-encode-as-text(p);
-      param-values[idx] := byte-storage-address(encoded);
+      param-values[idx] := make(<C-pointer>, address: byte-storage-address(encoded));
     end for;
     let param-lengths = null-pointer(<int*>);
     let param-formats = null-pointer(<int*>);
