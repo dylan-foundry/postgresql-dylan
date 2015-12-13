@@ -16,7 +16,12 @@ define interface
     },
     inline-functions: inline;
 
+  function "PQgetisnull",
+    map-result: <C-boolean>;
+
   struct "struct pg_conn",
     pointer-type-name: <pg-connection>;
+  struct "struct pg_result" => <_pg-result>,
+    pointer-type-name: <pg-result>;
 end interface;
 

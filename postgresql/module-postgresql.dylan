@@ -2,6 +2,8 @@ module: dylan-user
 
 define module postgresql
   use dylan;
+  use common-dylan;
+  use c-ffi;
 
   use %postgresql,
     export: {
@@ -29,7 +31,21 @@ define module postgresql
       $PQPING-NO-RESPONSE,
       $PQPING-NO-ATTEMPT,
 
-      <pg-connection>
+      <ExecStatusType>,
+      $PGRES-EMPTY-QUERY,
+      $PGRES-COMMAND-OK,
+      $PGRES-TUPLES-OK,
+      $PGRES-COPY-OUT,
+      $PGRES-COPY-IN,
+      $PGRES-BAD-RESPONSE,
+      $PGRES-NONFATAL-ERROR,
+      $PGRES-FATAL-ERROR,
+      $PGRES-COPY-BOTH,
+      $PGRES-SINGLE-TUPLE,
+
+      <pg-connection>,
+
+      <pg-result>
     };
 
   export pg-connect,
@@ -50,4 +66,25 @@ define module postgresql
          pg-server-version;
 
   export pg-socket;
+
+  export pg-encode-as-text;
+
+  export pg-execute;
+
+  export pg-result-status,
+         pg-result-status-as-text,
+         pg-result-error-message,
+         pg-result-clear,
+         pg-result-num-tuples,
+         pg-result-num-fields,
+         pg-result-field-name,
+         pg-result-field-number,
+         pg-result-field-table,
+         pg-result-field-table-column,
+         pg-result-field-format,
+         pg-result-field-type,
+         pg-result-field-type-modifier,
+         pg-value,
+         pg-value-null?,
+         pg-value-byte-length;
 end module postgresql;

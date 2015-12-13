@@ -9,5 +9,8 @@ files:        library
               raw-postgresql
               connection-control
               connection-status
+              type-conversion
+              execution
+              execution-results
 c-libraries:  -L`pg_config --libdir`
               -lpq
