@@ -10,6 +10,12 @@ define generic pg-encode-as-text
  => (bytes :: <byte-sequence>);
 
 define method pg-encode-as-text
+    (value :: <byte-sequence>)
+ => (bytes :: <byte-sequence>)
+  value
+end method pg-encode-as-text;
+
+define method pg-encode-as-text
     (value :: <boolean>)
  => (bytes :: <byte-sequence>)
   if (value)
