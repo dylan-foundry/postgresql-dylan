@@ -11,6 +11,7 @@ end library;
 
 define module postgresql-test-suite
   use common-dylan;
+  use threads;
   use format;
   use postgresql;
   use testworks;
