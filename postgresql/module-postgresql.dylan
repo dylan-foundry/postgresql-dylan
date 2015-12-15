@@ -50,7 +50,8 @@ define module postgresql
 
   export pg-connect,
          pg-connect-async,
-         pg-connect-poll;
+         pg-connect-poll,
+         $invalid-pg-connection;
 
   export pg-connection-status;
 

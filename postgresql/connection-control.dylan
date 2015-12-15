@@ -3,6 +3,8 @@ Synopsis: Bindings for the raw functions.
 Author: Bruce Mitchener, Jr.
 Copyright: See LICENSE file in this distribution.
 
+define constant $invalid-pg-connection = null-pointer(<pg-connection>);
+
 define inline function pg-connect
     (connection-info :: <string>)
  => (connection :: <pg-connection>)
