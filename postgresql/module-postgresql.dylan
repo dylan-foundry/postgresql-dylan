@@ -72,6 +72,9 @@ define module postgresql
 
   export pg-execute;
 
+  export pg-prepare,
+         pg-execute-prepared;
+
   export pg-result-status,
          pg-result-status-as-text,
          pg-result-error-message,
