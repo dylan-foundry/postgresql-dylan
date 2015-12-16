@@ -55,3 +55,10 @@ define function pg-execute-prepared
     PQexecPrepared(connection, statement-name, param-count, param-values,
                    param-lengths, param-formats, 0)
 end function pg-execute-prepared;
+
+define function pg-describe-prepared
+    (connection :: <pg-connection>,
+     statement-name :: <string>)
+ => (result :: <pg-result>)
+  PQdescribePrepared(connection, statement-name)
+end function pg-describe-prepared;
