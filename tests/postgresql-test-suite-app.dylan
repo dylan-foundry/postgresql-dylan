@@ -1,3 +1,8 @@
 module: postgresql-test-suite-app
 
-run-test-application(postgresql-test-suite);
+define suite all-postgresql-test-suites ()
+  suite postgresql-test-suite;
+  suite sql-postgresql-test-suite;
+end suite;
+
+run-test-application(all-postgresql-test-suites);

@@ -18,6 +18,7 @@ postgresql/raw-postgresql.dylan: postgresql/raw-postgresql.intr
 
 build: postgresql/raw-postgresql.dylan
 	$(TARGET_PLATFORM) dylan-compiler -build postgresql
+	$(TARGET_PLATFORM) dylan-compiler -build sql-postgresql
 
 test: postgresql/raw-postgresql.dylan
 	$(TARGET_PLATFORM) dylan-compiler -build postgresql-test-suite-app
