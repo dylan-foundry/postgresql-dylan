@@ -9,6 +9,12 @@ define inline function pg-connection-status
   PQstatus(connection)
 end function pg-connection-status;
 
+define inline function pg-connection-error-message
+    (connection :: <pg-connection>)
+ => (error-message :: <string>)
+  PQerrorMessage(connection)
+end function pg-connection-error-message;
+
 define inline function pg-protocol-version
     (connection :: <pg-connection>)
  => (version :: <integer>)

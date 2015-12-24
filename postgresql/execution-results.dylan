@@ -21,6 +21,12 @@ define inline function pg-result-error-message
   PQresultErrorMessage(result)
 end function pg-result-error-message;
 
+define inline function pg-result-command-status
+    (result :: <pg-result>)
+ => (status :: <string>)
+  PQcmdStatus(result)
+end function pg-result-command-status;
+
 define inline function pg-result-clear
     (result :: <pg-result>)
  => ()

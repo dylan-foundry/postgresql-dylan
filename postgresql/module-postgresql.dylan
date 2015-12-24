@@ -53,7 +53,8 @@ define module postgresql
          pg-connect-poll,
          $invalid-pg-connection;
 
-  export pg-connection-status;
+  export pg-connection-status,
+         pg-connection-error-message;
 
   export pg-finish;
 
@@ -79,6 +80,7 @@ define module postgresql
   export pg-result-status,
          pg-result-status-as-text,
          pg-result-error-message,
+         pg-result-command-status,
          pg-result-clear,
          pg-result-num-tuples,
          pg-result-num-fields,
