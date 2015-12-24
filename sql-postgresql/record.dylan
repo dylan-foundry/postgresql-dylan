@@ -11,7 +11,7 @@ define concrete sealed class <postgresql-record> (<record>)
 end class;
 
 define concrete sealed class <postgresql-coercion-record> (<postgresql-record>,
-                                                     <coercion-record>)
+                                                           <coercion-record>)
 end class;
 
 define method initialize(record :: <postgresql-record>, #key)
