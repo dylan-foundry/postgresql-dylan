@@ -8,7 +8,7 @@ define concrete class <postgresql-connection> (<connection>)
     required-init-keyword: user:;
   constant slot database :: <postgresql-database>,
     required-init-keyword: database:;
-  slot %connection-handle :: <pg-connection> = $invalid-pg-connection,
+  slot %connection-handle :: <pg-connection>,
     required-init-keyword: connection-handle:;
   constant slot %allocated-sql-statements = make(<table>, weak: #"key");
 end class;
@@ -50,7 +50,7 @@ define method connect
       end if;
   let connection = make(<postgresql-connection>,
                         user: user, database: database,
-                        connetion-handle: pg-conn,
+                        connection-handle: pg-conn,
                         dbms: dbms);
 
   with-lock (*all-connections-lock*)
