@@ -11,7 +11,7 @@ define variable *ddl-connection* = #f;
 define test create-table-test ()
   with-connection(*ddl-connection*)
     let stmt = make(<sql-statement>,
-                    text: "create table dwsql (col_1 char(50), col_2 number)");
+                    text: "create table dwsql (col_1 char(50), col_2 integer)");
     let result = execute(stmt);
     assert-instance?(<empty-result-set>, result);
 
@@ -25,7 +25,7 @@ define test create-duplicate-table-test ()
     local method create-table()
             let stmt = make(<sql-statement>,
                             text: "create table dwsql (col_1 char(50), "
-                              "col_2 number)");
+                              "col_2 integer)");
             execute(stmt);
           end method;
 

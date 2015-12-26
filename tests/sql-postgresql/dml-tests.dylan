@@ -25,10 +25,10 @@ define function insertion-test-body()
   with-connection(*dml-connection*)
     block (exit)
       with-transaction()
-        execute("create table dwsql (col_1 varchar(1), col_2 number)");
+        execute("create table dwsql (col_1 varchar(1), col_2 integer)");
 
         let stmt = make(<sql-statement>,
-                        text: "insert into dwsql (col_1, col_2) values(?, ?)");
+                        text: "insert into dwsql (col_1, col_2) values($1, $2)");
         for (i from as(<integer>, 'a') to as(<integer>, 'z'))
           execute(stmt, parameters: vector(as(<character>, i), i));
         end for;
@@ -53,11 +53,11 @@ define function null-insertion-test-1-body()
   with-connection(*dml-connection*)
     block (exit)
       with-transaction()
-        execute("create table dwsql (col_1 varchar(1), col_2 number)");
+        execute("create table dwsql (col_1 varchar(1), col_2 integer)");
 
         let statement = make(<sql-statement>,
                              text: "insert into dwsql(col_1, col_2) "
-                               "values(?, ?)",
+                               "values($1, $2)",
                              input-indicator: $null-value);
         execute(statement, parameters: vector('a', $null-value));
 
@@ -85,11 +85,11 @@ define function null-insertion-test-2-body()
   with-connection(*dml-connection*)
     block (exit)
       with-transaction()
-        execute("create table dwsql (col_1 varchar(1), col_2 number)");
+        execute("create table dwsql (col_1 varchar(1), col_2 integer)");
 
         let statement = make(<sql-statement>,
                              text: "insert into dwsql(col_1, col_2) "
-                               "values('a', ?)",
+                               "values('a', $1)",
                              input-indicator: -1);
         execute(statement, parameters: vector(-1));
 
@@ -114,11 +114,11 @@ define function null-selection-test-body()
   with-connection(*dml-connection*)
     block (exit)
       with-transaction()
-        execute("create table dwsql (col_1 varchar(1), col_2 number)");
+        execute("create table dwsql (col_1 varchar(1), col_2 integer)");
 
         let insert-statement = make(<sql-statement>,
                                     text: "insert into dwsql(col_1, col_2) "
-                                      "values(?, ?)",
+                                      "values($1, $2)",
                                     input-indicator: $null-value);
 
         for (i :: <integer> from as(<integer>, 'a') to as(<integer>, 'z'))
