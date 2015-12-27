@@ -126,14 +126,12 @@ define function generate-data
     let stmt = result-set.%sql-statement;
     result-set.%record := if (stmt.coercion-policy ~= $no-coercion)
                             make(<postgresql-coercion-record>,
-                                 statement: stmt,
                                  record-coercion-policy: stmt.coercion-policy,
                                  indicator-policy: stmt.output-indicator,
                                  result: result-set.%result,
                                  row-number: result-set.%current-record-number)
                           else
                             make(<postgresql-record>,
-                                 statement: stmt,
                                  indicator-policy: stmt.output-indicator,
                                  result: result-set.%result,
                                  row-number: result-set.%current-record-number)
