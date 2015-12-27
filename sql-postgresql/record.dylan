@@ -38,27 +38,24 @@ end method;
 define method record-element-by-state(record :: <postgresql-record>,
                                       state :: <integer>)
  => (record-element :: <object>)
-/*
-  let (binding, null?) = acquire-binding(record, state);
+  let null? = pg-value-null?(record.%result, record.%row-number, state);
   if (null? = #t)
     acquire-null-value(record.indicator-policy, state);
   else
-    binding.storage;
+    pg-value(record.%result, record.%row-number, state)
   end if;
-*/
 end method;
 
 define method record-element-by-state(record :: <postgresql-coercion-record>,
                                       state :: <integer>)
  => (record-element :: <object>)
-/*
-  let (binding, null?) = acquire-binding(record, state);
+  let null? = pg-value-null?(record.%result, record.%row-number, state);
   if (null? = #t)
     acquire-null-value(record.indicator-policy, state);
   else
-    convert-value(record.record-coercion-policy, binding.storage, state);
+    let value = pg-value(record.%result, record.%row-number, state);
+    convert-value(record.record-coercion-policy, value, state);
   end if;
-*/
 end method;
 
 define method record-element-by-state-setter
@@ -88,7 +85,7 @@ define method forward-iteration-protocol
       current-element-setter :: <function>,
       copy-state :: <function>)
   let initial-state :: <integer> = 0;
-  let limit :: <integer> = 0; // record.bindings.size;
+  let limit = pg-result-num-fields(record.%result);
   values(initial-state,
          limit,
          next-record-state,
@@ -105,7 +102,7 @@ define method element
     (record :: <postgresql-record>,
      key :: <integer>,
      #key default = unsupplied())
-  => (record-element :: <object>)
+ => (record-element :: <object>)
   block ()
     record-element-by-state(record, key)
   exception (condition :: <data-not-available>)  //++ correct condition?

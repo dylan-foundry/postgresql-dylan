@@ -116,7 +116,7 @@ define function generate-data
     result-set.%sql-statement := make(<postgresql-sql-statement>,
                                       connection: result-set.%connection,
                                       text: "");
-   end if;
+  end if;
 
   if (result-set.data-generated? = #f)
     if (result-set.generator ~= #f)
@@ -302,7 +302,7 @@ end method;
 define method element
     (result-set :: <postgresql-result-set>, key :: <integer>,
      #key default = unsupplied())
-  => (result-set-element :: <object>)
+ => (result-set-element :: <object>)
   generate-data(result-set);
   let result-set-element = block ()
                              result-set-element(result-set, key);

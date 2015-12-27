@@ -11,6 +11,6 @@ end class;
 
 define method make-dbms-specific
      (type == <database>, dbms :: <postgresql-dbms>, #rest more-args)
-  => (database :: <postgresql-database>)
+ => (database :: <postgresql-database>)
   apply(make, <postgresql-database>, more-args)
 end method;

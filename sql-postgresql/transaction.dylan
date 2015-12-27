@@ -27,7 +27,7 @@ define method default-transaction-mode(connection :: <postgresql-connection>)
 end method;
 
 define method default-isolation-level(connection :: <postgresql-connection>)
-  => (level :: <isolation-level>)
+ => (level :: <isolation-level>)
 /*
   let (return-code, postgresql-isolation-level)
     = nice-SQLGetInfo(connection.%connection-handle,
@@ -196,7 +196,7 @@ end function;
 
 define function set-isolation-level(connection :: <postgresql-connection>,
                                     isolation-level :: <isolation-level>)
-  => ()
+ => ()
 /*
   let return-code = nice-SQLSetConnectAttr(connection.%connection-handle,
                                         $sql-attr-txn-isolation,
