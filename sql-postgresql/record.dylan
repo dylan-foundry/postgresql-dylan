@@ -14,29 +14,6 @@ define concrete sealed class <postgresql-coercion-record> (<postgresql-record>,
                                                            <coercion-record>)
 end class;
 
-define method initialize(record :: <postgresql-record>, #key)
-  => ()
-  next-method();
-
-/*
-  let (return-code, column-count) = SQLNumResultCols(statement-handle);
-
-  for (column-number :: <integer> from 1 to column-count)
-    let binding = do-binding(column-number);
-    record.bindings := add!(record.bindings, binding);
-  end for;
-*/
-end method;
-
-
-/*
-define method acquire-binding(record :: <postgresql-record>, key :: <integer>)
- => (field :: <object>, null? :: <boolean>)
-  let binding = element(record.bindings, key);
-  values(binding, null-postgresql-field?(binding.data-length));
-end method;
-*/
-
 define method next-record-state(record :: <postgresql-record>, state :: <integer>)
  => (next-state :: <integer>)
   state + 1;
