@@ -24,6 +24,9 @@ define abstract class <postgresql-result-set> (<result-set>)
   slot %record :: false-or(<postgresql-record>) = #f,
     init-keyword: record:;
 
+  constant slot %result :: <pg-result>,
+    required-init-keyword: result:;
+
   slot %sql-statement :: false-or(<postgresql-sql-statement>) = #f,
     init-keyword: sql-statement:;
 
@@ -69,6 +72,7 @@ end method;
 define method make
     (type == <postgresql-result-set>,
      #key result-set-policy :: <result-set-policy>,
+          result :: <pg-result>,
           statement :: false-or(<postgresql-sql-statement>),
           liaison :: false-or(<function>),
           generator :: false-or(<function>),
@@ -90,6 +94,7 @@ define method make
                     end if;
   make(result-set-class,
        sql-statement: statement,
+       result: result,
        liaison: the-liaison, generator: generator,
        rowset-size: result-set-policy.rowset-size,
        connection: if (statement ~= #f) statement.connection else the-connection end if)
@@ -123,11 +128,15 @@ define function generate-data
                             make(<postgresql-coercion-record>,
                                  statement: stmt,
                                  record-coercion-policy: stmt.coercion-policy,
-                                 indicator-policy: stmt.output-indicator);
+                                 indicator-policy: stmt.output-indicator,
+                                 result: result-set.%result,
+                                 row-number: result-set.%current-record-number)
                           else
                             make(<postgresql-record>,
                                  statement: stmt,
-                                 indicator-policy: stmt.output-indicator)
+                                 indicator-policy: stmt.output-indicator,
+                                 result: result-set.%result,
+                                 row-number: result-set.%current-record-number)
                           end if;
     result-set.data-generated? := #t;
   end if;

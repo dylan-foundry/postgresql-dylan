@@ -8,6 +8,10 @@ Warranty:     Distributed WITHOUT WARRANTY OF ANY KIND
 
 
 define concrete sealed class <postgresql-record> (<record>)
+  constant slot %result :: <pg-result>,
+    required-init-keyword: result:;
+  constant slot %row-number :: <integer>,
+    required-init-keyword: row-number:;
 end class;
 
 define concrete sealed class <postgresql-coercion-record> (<postgresql-record>,

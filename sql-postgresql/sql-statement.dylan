@@ -92,10 +92,11 @@ define method execute
     if (pg-result-status(res) = $PGRES-TUPLES-OK)
       make(<postgresql-result-set>,
            result-set-policy: result-set-policy,
+           result: res,
            statement: statement,
            liaison: liaison);
     else
-      make(<empty-result-set>);
+      make(<empty-result-set>, result: res);
     end if;
   end
 end method;
