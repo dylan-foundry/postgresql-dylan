@@ -32,6 +32,10 @@ define method initialize
     *prepared-counter* := *prepared-counter* + 1;
   end if;
 
+  pg-prepare(stmt.connection.%connection-handle,
+             stmt.%statement-name,
+             stmt.text);
+
   // Setup for finalization.
   finalize-when-unreachable(stmt);
   stmt.connection.%allocated-sql-statements[stmt] := #t;
