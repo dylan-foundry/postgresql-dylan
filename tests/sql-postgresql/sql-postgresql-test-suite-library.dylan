@@ -2,6 +2,7 @@ module: dylan-user
 
 define library sql-postgresql-test-suite
   use common-dylan;
+  use c-ffi;
   use sql-postgresql;
   use testworks;
 
@@ -10,6 +11,7 @@ end library;
 
 define module sql-postgresql-test-suite
   use common-dylan;
+  use c-ffi;
   use sql-postgresql;
   use testworks;
 
