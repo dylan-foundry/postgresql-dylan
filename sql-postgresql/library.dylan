@@ -17,6 +17,12 @@ define module sql-postgresql
          <postgresql-user>,
          <postgresql-connection>,
          <postgresql-sql-statement>;
+
+  create assert-postgresql-goodness;
+
+  create <postgresql-error>,
+         <postgresql-low-level-error>,
+         low-level-error-message;
 end module;
 
 define module sql-postgresql-implementation

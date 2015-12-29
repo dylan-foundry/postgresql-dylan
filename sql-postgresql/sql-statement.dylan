@@ -32,9 +32,10 @@ define method initialize
     *prepared-counter* := *prepared-counter* + 1;
   end if;
 
-  pg-prepare(stmt.connection.%connection-handle,
-             stmt.%statement-name,
-             stmt.text);
+  let res = pg-prepare(stmt.connection.%connection-handle,
+                       stmt.%statement-name,
+                       stmt.text);
+  assert-postgresql-goodness(res, stmt.connection);
 
   // Setup for finalization.
   finalize-when-unreachable(stmt);
@@ -46,6 +47,7 @@ define method statement-column-names
  => (column-names :: <simple-object-vector>)
   let res = pg-describe-prepared(statement.connection.%connection-handle,
                                  statement.%statement-name);
+  assert-postgresql-goodness(res, statement.connection);
   let column-count = pg-result-num-fields(res);
   let column-names = make(<simple-object-vector>, size: column-count);
   for (column :: <integer> from 0 below column-count)
@@ -67,9 +69,10 @@ define method finalize
   with-lock($sql-statement-finalization-lock)
     let stmt-name = statement.%statement-name;
     if (stmt-name)
-      pg-execute(statement.connection.%connection-handle,
-                 format-to-string("DEALLOCATE PREPARED \"%s\";",
-                                  stmt-name));
+      let res = pg-execute(statement.connection.%connection-handle,
+                           format-to-string("DEALLOCATE PREPARED \"%s\";",
+                                            stmt-name));
+      assert-postgresql-goodness(res, statement.connection);
       statement.%statement-name := #f;
     end
   end with-lock;
@@ -88,6 +91,7 @@ define method execute
                   statement.connection.%connection-handle,
                   statement.%statement-name,
                   parameters);
+  assert-postgresql-goodness(res, statement.connection);
   if (result-set-policy)
     if (pg-result-status(res) = $PGRES-TUPLES-OK)
       make(<postgresql-result-set>,
